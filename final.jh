@@ -1,0 +1,56 @@
+
+entity Brand {
+	name String
+}
+entity Category{
+	name String
+}
+
+entity Product {
+	name String,
+    description String,
+    price BigDecimal,
+    amount Integer
+}
+relationship ManyToOne{
+	Product{category} to Category,
+    Product{brand} to Brand,
+}
+
+entity BillImport {
+	amount Integer,
+    date LocalDate,
+    charge BigDecimal
+}
+relationship ManyToOne{
+	BillImport{product} to Product
+}
+entity Customer {
+	name String,
+    birthday LocalDate,
+    adress String,
+    phone String
+}
+entity DetailBillExport{
+	amount Integer,
+}
+
+entity BillExport {
+    date LocalDate,
+    priceTotal BigDecimal
+}
+relationship ManyToOne{
+	BillExport{customer} to Customer
+}
+
+relationship ManyToOne{
+	DetailBillExport{product} to Product,
+    DetailBillExport{billExport} to BillExport
+}
+
+
+
+
+
+
+
